@@ -37,4 +37,16 @@ class BerlinClockUiMapperTest {
         assert(color.first() == Color.Red)
         assert(color.get(1) == Color.Yellow)
     }
+
+    @Test
+    fun `should map BerlinClockModel to BerlinClockUiState map all fields`(){
+        val berlinClockModel = BerlinClockModel(
+            second = "Y",
+            fiveHourRow = "RROO",
+            oneHourRow = "RRRO",
+            fiveMinRow = "YYROOOOOOOO")
+        val berlinClockUiState = BerlinClockUiMapper.map(berlinClockModel)
+        assert(berlinClockUiState.second == Color.Yellow)
+        assert(berlinClockUiState.fiveHourRow == listOf(Color.Red,Color.Red,Color.DarkGray,Color.DarkGray))
+    }
 }

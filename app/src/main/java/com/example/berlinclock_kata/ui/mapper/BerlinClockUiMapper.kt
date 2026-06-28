@@ -6,7 +6,13 @@ import com.example.berlinclock_kata.ui.models.BerlinClockUiState
 
 object BerlinClockUiMapper {
     fun map(model: BerlinClockModel): BerlinClockUiState {
-        return BerlinClockUiState(second = toColors(model.second).first())
+        return BerlinClockUiState(
+            second = toColors(model.second).first(),
+            fiveHourRow = toColors(model.fiveHourRow),
+            oneHourRow = toColors(model.oneHourRow),
+            fiveMinRow = toColors(model.fiveMinRow),
+            oneMinRow = toColors(model.oneMinRow)
+        )
     }
 
     fun toColors(colour: String): List<Color> {
@@ -14,7 +20,7 @@ object BerlinClockUiMapper {
             when (it) {
                 'Y' -> Color.Yellow
                 'R' -> Color.Red
-                else -> Color.LightGray
+                else -> Color.DarkGray
             }
         }
     }
