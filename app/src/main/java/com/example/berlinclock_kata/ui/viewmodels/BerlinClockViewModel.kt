@@ -8,12 +8,16 @@ import com.example.berlinclock_kata.domain.models.BerlinClockModel
 import com.example.berlinclock_kata.domain.usecase.BerlinClockUseCase
 import com.example.berlinclock_kata.ui.mapper.BerlinClockUiMapper
 import com.example.berlinclock_kata.ui.models.BerlinClockUiState
+import dagger.hilt.android.lifecycle.HiltViewModel
+import javax.inject.Inject
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.stateIn
 
-class BerlinClockViewModel(useCase: BerlinClockUseCase): ViewModel() {
+@HiltViewModel
+class BerlinClockViewModel @Inject constructor(useCase: BerlinClockUseCase): ViewModel() {
+
     @RequiresApi(Build.VERSION_CODES.O)
     val uiState: StateFlow<BerlinClockUiState> = useCase().map {
         BerlinClockUiMapper.map(it)

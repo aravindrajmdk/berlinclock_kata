@@ -8,8 +8,9 @@ import kotlinx.coroutines.currentCoroutineContext
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.isActive
+import javax.inject.Inject
 
-class BerlinClockUseCase(private val timeProvider: TimeProvider) {
+class BerlinClockUseCase @Inject constructor(private val timeProvider: TimeProvider) {
 
     @RequiresApi(Build.VERSION_CODES.O)
     operator fun invoke() = flow {
