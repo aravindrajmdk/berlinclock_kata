@@ -43,4 +43,10 @@ class BerlinClockUseCaseTest {
         val fiveHourRow = berlinClockUseCase.getFiveHourRow(20)
         assertEquals("RRRR", fiveHourRow)
     }
+
+    @Test
+    fun `one hour row for 4 hours`() {
+        val oneHourRow = berlinClockUseCase.getOneHourRow(4)
+        assertEquals("RRRR", oneHourRow)
+    }
 }
