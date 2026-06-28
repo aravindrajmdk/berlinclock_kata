@@ -13,4 +13,11 @@ class BerlinClockUseCaseTest {
         var colour=berlinClockUseCase.getSecondLightColor(2)
         assertEquals("Y",colour)
     }
+
+    @Test
+    fun `should return O for odd seconds`() {
+        berlinClockUseCase = BerlinClockUseCase()
+        var colour = berlinClockUseCase.getSecondLightColor(1)
+        assertEquals("O", colour)
+    }
 }
