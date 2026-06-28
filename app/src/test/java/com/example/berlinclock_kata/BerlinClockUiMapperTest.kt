@@ -1,0 +1,21 @@
+package com.example.berlinclock_kata
+
+import android.provider.CalendarContract
+import androidx.compose.ui.graphics.Color
+import com.example.berlinclock_kata.domain.models.BerlinClockModel
+import com.example.berlinclock_kata.ui.mapper.BerlinClockUiMapper
+import org.junit.Test
+
+class BerlinClockUiMapperTest {
+
+    @Test
+    fun `should map BerlinClockModel to BerlinClockUiState`() {
+        val berlinClockModel = BerlinClockModel(
+            second = "Y",
+            fiveHourRow = "RROO",
+            oneHourRow = "RRRO",
+            fiveMinRow = "YYROOOOOOOO")
+        val berlinClockUiState = BerlinClockUiMapper().map(berlinClockModel)
+        assert(berlinClockUiState.second == Color.Yellow)
+    }
+}
