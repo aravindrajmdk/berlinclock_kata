@@ -24,6 +24,7 @@ class BerlinClockUseCase {
     }
 
     fun getOneMinRow(minutes: Int): String {
-        return "YYOO"
+        val on = (minutes % 5).toInt()
+        return "Y".repeat(on).padEnd(4, 'O')
     }
 }
