@@ -15,7 +15,13 @@ class BerlinClockUiMapperTest {
             fiveHourRow = "RROO",
             oneHourRow = "RRRO",
             fiveMinRow = "YYROOOOOOOO")
-        val berlinClockUiState = BerlinClockUiMapper().map(berlinClockModel)
+        val berlinClockUiState = BerlinClockUiMapper.map(berlinClockModel)
         assert(berlinClockUiState.second == Color.Yellow)
+    }
+
+    @Test
+    fun `toColors should return color code`(){
+       val color= BerlinClockUiMapper.toColors("Y")
+        assert(color.first() == Color.Yellow)
     }
 }
