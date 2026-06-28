@@ -16,6 +16,10 @@ class BerlinClockUseCase {
     }
 
     fun getFiveMinRow(minutes: Int): String {
-        return "YYOOOOOOOOO"
+        val colors = CharArray(11) { 'O' }
+        repeat(minutes / 5) {
+            colors[it] = if ((it + 1) % 3 == 0) 'R' else 'Y'
+        }
+        return String(colors)
     }
 }
