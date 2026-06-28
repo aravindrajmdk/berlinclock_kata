@@ -1,9 +1,13 @@
 package com.example.berlinclock_kata
 
+import com.example.berlinclock_kata.domain.models.BerlinClockModel
 import com.example.berlinclock_kata.domain.usecase.BerlinClockUseCase
+import kotlinx.coroutines.flow.first
+import kotlinx.coroutines.test.runTest
 import org.junit.Test
 import org.junit.Assert.assertEquals
 import org.junit.Before
+import java.time.LocalTime
 
 class BerlinClockUseCaseTest {
 
@@ -11,7 +15,7 @@ class BerlinClockUseCaseTest {
 
     @Before
     fun setUp(){
-        berlinClockUseCase = BerlinClockUseCase()
+        berlinClockUseCase = BerlinClockUseCase(FakeTimeProvider(LocalTime.of(13,17,8)))
     }
 
     @Test
@@ -78,5 +82,19 @@ class BerlinClockUseCaseTest {
     fun `one min row for 1 min`() {
         val oneMinRow = berlinClockUseCase.getOneMinRow(1)
         assertEquals("YOOO", oneMinRow)
+    }
+
+    @Test
+    fun `validate berlin clock invoke`() = runTest {
+        val result = berlinClockUseCase().first() //13,17,8
+        assertEquals(
+            BerlinClockModel(
+                second = "Y",
+                fiveHourRow = "RROO",
+                oneHourRow = "RRRO",
+                fiveMinRow = "YYROOOOOOOO",
+                oneMinRow = "YYOO"
+            ), result
+        )
     }
 }

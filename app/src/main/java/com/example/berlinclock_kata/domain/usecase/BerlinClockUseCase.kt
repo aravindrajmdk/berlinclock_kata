@@ -1,6 +1,33 @@
 package com.example.berlinclock_kata.domain.usecase
 
-class BerlinClockUseCase {
+import android.os.Build
+import androidx.annotation.RequiresApi
+import com.example.berlinclock_kata.core.TimeProvider
+import com.example.berlinclock_kata.domain.models.BerlinClockModel
+import kotlinx.coroutines.currentCoroutineContext
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.flow.flow
+import kotlinx.coroutines.isActive
+
+class BerlinClockUseCase(private val timeProvider: TimeProvider) {
+
+    @RequiresApi(Build.VERSION_CODES.O)
+    operator fun invoke() = flow {
+        while (currentCoroutineContext().isActive) {
+            val time = timeProvider.now()
+            emit(
+                BerlinClockModel(
+                    second = getSecondLightColor(time.second),
+                    fiveHourRow = getFiveHourRow(time.hour),
+                    oneHourRow = getOneHourRow(time.hour),
+                    fiveMinRow = getFiveMinRow(time.minute),
+                    oneMinRow = getOneMinRow(time.minute)
+                )
+            )
+            delay(1000)
+        }
+    }
+
     fun getSecondLightColor(seconds: Int): String {
         return if (seconds % 2 == 0) "Y" else "O"
     }
