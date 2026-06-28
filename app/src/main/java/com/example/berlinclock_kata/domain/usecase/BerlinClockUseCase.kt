@@ -11,6 +11,7 @@ class BerlinClockUseCase {
     }
 
     fun getOneHourRow(hours: Int): String {
-        return "RRRR"
+        val on = (hours % 5).toInt()
+        return "R".repeat(on).padEnd(4, 'O')
     }
 }
