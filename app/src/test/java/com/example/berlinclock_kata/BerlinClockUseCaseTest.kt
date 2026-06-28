@@ -3,6 +3,8 @@ package com.example.berlinclock_kata
 import com.example.berlinclock_kata.domain.models.BerlinClockModel
 import com.example.berlinclock_kata.domain.usecase.BerlinClockUseCase
 import kotlinx.coroutines.flow.first
+import kotlinx.coroutines.flow.take
+import kotlinx.coroutines.flow.toList
 import kotlinx.coroutines.test.runTest
 import org.junit.Test
 import org.junit.Assert.assertEquals
@@ -96,5 +98,11 @@ class BerlinClockUseCaseTest {
                 oneMinRow = "YYOO"
             ), result
         )
+    }
+
+    @Test
+    fun `validate multiple emisions`() =runTest{
+        val result = berlinClockUseCase().take(2).toList()
+        assertEquals(2, result.size)
     }
 }
