@@ -8,12 +8,8 @@ import com.example.berlinclock_kata.ui.viewmodels.BerlinClockViewModel
 import io.mockk.every
 import io.mockk.mockk
 import junit.framework.TestCase.assertEquals
-import kotlinx.coroutines.flow.emptyFlow
-import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.flowOf
-import kotlinx.coroutines.test.advanceUntilIdle
 import kotlinx.coroutines.test.runTest
-import org.junit.Assert.assertTrue
 import org.junit.Test
 
 class BerlinClockViewModelTest {
