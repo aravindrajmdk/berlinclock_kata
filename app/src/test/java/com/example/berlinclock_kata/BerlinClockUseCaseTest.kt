@@ -25,4 +25,10 @@ class BerlinClockUseCaseTest {
         var colour = berlinClockUseCase.getSecondLightColor(1)
         assertEquals("O", colour)
     }
+
+    @Test
+    fun `five hour row for 15 hours`() {
+        val fiveHourRow = berlinClockUseCase.getFiveHourRow(15)
+        assertEquals("RRRO", fiveHourRow)
+    }
 }

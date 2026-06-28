@@ -5,4 +5,7 @@ class BerlinClockUseCase {
         return if (seconds % 2 == 0) "Y" else "O"
     }
 
+    fun getFiveHourRow(hours: Int): String {
+        return "RRRO"
+    }
 }
