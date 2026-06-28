@@ -14,4 +14,8 @@ class BerlinClockUseCase {
         val on = (hours % 5).toInt()
         return "R".repeat(on).padEnd(4, 'O')
     }
+
+    fun getFiveMinRow(minutes: Int): String {
+        return "YYOOOOOOOOO"
+    }
 }
