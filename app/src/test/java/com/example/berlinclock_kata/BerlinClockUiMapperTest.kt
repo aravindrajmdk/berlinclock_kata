@@ -24,4 +24,10 @@ class BerlinClockUiMapperTest {
        val color= BerlinClockUiMapper.toColors("Y")
         assert(color.first() == Color.Yellow)
     }
+
+    @Test
+    fun `toColors should return color RED`(){
+        val color= BerlinClockUiMapper.toColors("R")
+        assert(color.first() == Color.Red)
+    }
 }

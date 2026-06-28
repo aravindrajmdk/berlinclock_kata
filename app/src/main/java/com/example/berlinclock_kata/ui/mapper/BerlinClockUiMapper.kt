@@ -10,6 +10,12 @@ object BerlinClockUiMapper {
     }
 
     fun toColors(colour: String): List<Color>{
-        return listOf(Color.Yellow)
+        if (colour == "Y"){
+            return listOf(Color.Yellow)
+        }
+        if (colour == "R"){
+            return listOf(Color.Red)
+        }
+        return listOf(Color.LightGray)
     }
 }
