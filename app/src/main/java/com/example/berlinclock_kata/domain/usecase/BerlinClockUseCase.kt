@@ -22,4 +22,8 @@ class BerlinClockUseCase {
         }
         return String(colors)
     }
+
+    fun getOneMinRow(minutes: Int): String {
+        return "YYOO"
+    }
 }
