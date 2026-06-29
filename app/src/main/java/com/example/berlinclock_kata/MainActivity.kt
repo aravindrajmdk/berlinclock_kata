@@ -17,11 +17,9 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Scaffold
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -31,7 +29,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
-import com.example.berlinclock_kata.ui.models.BerlinClockUiState
+import com.example.berlinclock_kata.ui.models.BerlinClockUi
 import com.example.berlinclock_kata.ui.theme.Berlinclock_kataTheme
 import com.example.berlinclock_kata.ui.viewmodels.BerlinClockViewModel
 import dagger.hilt.android.AndroidEntryPoint
@@ -60,7 +58,7 @@ fun BerLinClock(modifier: Modifier = Modifier, viewModel: BerlinClockViewModel =
 }
 
 @Composable
-fun BerlinClockContent(uiState: BerlinClockUiState){
+fun BerlinClockContent(uiState: BerlinClockUi){
     Column(
         modifier = Modifier
             .fillMaxWidth()
@@ -115,7 +113,7 @@ fun LightRow(
 @Composable
 fun GreetingPreview() {
     Berlinclock_kataTheme {
-        val previewState = BerlinClockUiState(
+        val previewState = BerlinClockUi(
             second = Color.Yellow,
             fiveHourRow = listOf(
                 Color.Red,
