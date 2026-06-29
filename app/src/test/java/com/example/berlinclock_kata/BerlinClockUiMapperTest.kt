@@ -14,7 +14,9 @@ class BerlinClockUiMapperTest {
             second = "Y",
             fiveHourRow = "RROO",
             oneHourRow = "RRRO",
-            fiveMinRow = "YYROOOOOOOO")
+            fiveMinRow = "YYROOOOOOOO",
+            oneMinRow = "YYOO"
+        )
         val berlinClockUiState = BerlinClockUiMapper.map(berlinClockModel)
         assert(berlinClockUiState.second == Color.Yellow)
     }
@@ -44,7 +46,9 @@ class BerlinClockUiMapperTest {
             second = "Y",
             fiveHourRow = "RROO",
             oneHourRow = "RRRO",
-            fiveMinRow = "YYROOOOOOOO")
+            fiveMinRow = "YYROOOOOOOO",
+            oneMinRow = "YYOO"
+        )
         val berlinClockUiState = BerlinClockUiMapper.map(berlinClockModel)
         assert(berlinClockUiState.second == Color.Yellow)
         assert(berlinClockUiState.fiveHourRow == listOf(Color.Red,Color.Red,Color.DarkGray,Color.DarkGray))
