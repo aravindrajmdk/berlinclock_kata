@@ -15,79 +15,86 @@ class BerlinClockUseCaseTest {
 
     lateinit var berlinClockUseCase: BerlinClockUseCase
 
-    @Before
-    fun setUp(){
-        berlinClockUseCase = BerlinClockUseCase(FakeTimeProvider(LocalTime.of(13,17,8)))
+    @Test
+    fun `should return Y for even seconds`() = runTest {
+        berlinClockUseCase = BerlinClockUseCase(FakeTimeProvider(LocalTime.of(13, 17, 2)))
+        var colour = berlinClockUseCase().first().second
+        assertEquals("Y", colour)
     }
 
     @Test
-    fun `should return Y for even seconds`(){
-        var colour=berlinClockUseCase.getSecondLightColor(2)
-        assertEquals("Y",colour)
-    }
-
-    @Test
-    fun `should return O for odd seconds`() {
-        var colour = berlinClockUseCase.getSecondLightColor(1)
+    fun `should return O for odd seconds`() = runTest {
+        berlinClockUseCase = BerlinClockUseCase(FakeTimeProvider(LocalTime.of(13, 17, 1)))
+        var colour = berlinClockUseCase().first().second
         assertEquals("O", colour)
     }
 
     @Test
-    fun `five hour row for 15 hours`() {
-        val fiveHourRow = berlinClockUseCase.getFiveHourRow(15)
+    fun `five hour row for 15 hours`() = runTest {
+        berlinClockUseCase = BerlinClockUseCase(FakeTimeProvider(LocalTime.of(15, 15, 1)))
+        var fiveHourRow = berlinClockUseCase().first().fiveHourRow
         assertEquals("RRRO", fiveHourRow)
     }
 
     @Test
-    fun `five hour row for 3 hours`() {
-        val fiveHourRow = berlinClockUseCase.getFiveHourRow(3)
+    fun `five hour row for 3 hours`() = runTest {
+        berlinClockUseCase = BerlinClockUseCase(FakeTimeProvider(LocalTime.of(3, 0, 1)))
+        var fiveHourRow = berlinClockUseCase().first().fiveHourRow
         assertEquals("OOOO", fiveHourRow)
     }
 
     @Test
-    fun `five hour row for 20 hours`() {
-        val fiveHourRow = berlinClockUseCase.getFiveHourRow(20)
+    fun `five hour row for 20 hours`() = runTest {
+        berlinClockUseCase = BerlinClockUseCase(FakeTimeProvider(LocalTime.of(20, 3, 1)))
+        var fiveHourRow = berlinClockUseCase().first().fiveHourRow
         assertEquals("RRRR", fiveHourRow)
     }
 
     @Test
-    fun `one hour row for 4 hours`() {
-        val oneHourRow = berlinClockUseCase.getOneHourRow(4)
+    fun `one hour row for 4 hours`() = runTest {
+        berlinClockUseCase = BerlinClockUseCase(FakeTimeProvider(LocalTime.of(4, 3, 1)))
+        var oneHourRow = berlinClockUseCase().first().oneHourRow
         assertEquals("RRRR", oneHourRow)
     }
 
     @Test
-    fun `one hour row for 2 hours`() {
-        val oneHourRow = berlinClockUseCase.getOneHourRow(2)
+    fun `one hour row for 2 hours`() = runTest {
+        berlinClockUseCase = BerlinClockUseCase(FakeTimeProvider(LocalTime.of(2, 3, 1)))
+        var oneHourRow = berlinClockUseCase().first().oneHourRow
         assertEquals("RROO", oneHourRow)
     }
 
     @Test
-    fun `five min row for 10 min`() {
-        val fiveMinRow = berlinClockUseCase.getFiveMinRow(10)
+    fun `five min row for 10 min`() = runTest {
+        berlinClockUseCase = BerlinClockUseCase(FakeTimeProvider(LocalTime.of(13, 10, 1)))
+        var fiveMinRow = berlinClockUseCase().first().fiveMinRow
         assertEquals("YYOOOOOOOOO", fiveMinRow)
     }
 
     @Test
-    fun `five min row for 15 min`() {
-        val fiveMinRow = berlinClockUseCase.getFiveMinRow(15)
+    fun `five min row for 15 min`() = runTest {
+        berlinClockUseCase = BerlinClockUseCase(FakeTimeProvider(LocalTime.of(13, 15, 1)))
+        var fiveMinRow = berlinClockUseCase().first().fiveMinRow
         assertEquals("YYROOOOOOOO", fiveMinRow)
     }
 
     @Test
-    fun `one min row for 2 min`() {
-        val oneMinRow = berlinClockUseCase.getOneMinRow(2)
+    fun `one min row for 2 min`() = runTest {
+        berlinClockUseCase = BerlinClockUseCase(FakeTimeProvider(LocalTime.of(13, 2, 1)))
+        var oneMinRow = berlinClockUseCase().first().oneMinRow
         assertEquals("YYOO", oneMinRow)
     }
 
     @Test
-    fun `one min row for 1 min`() {
-        val oneMinRow = berlinClockUseCase.getOneMinRow(1)
+    fun `one min row for 1 min`() = runTest {
+        berlinClockUseCase = BerlinClockUseCase(FakeTimeProvider(LocalTime.of(13, 1, 1)))
+        var oneMinRow = berlinClockUseCase().first().oneMinRow
         assertEquals("YOOO", oneMinRow)
     }
 
     @Test
     fun `validate berlin clock invoke`() = runTest {
+        berlinClockUseCase = BerlinClockUseCase(FakeTimeProvider(LocalTime.of(13, 17, 8)))
         val result = berlinClockUseCase().first() //13,17,8
         assertEquals(
             BerlinClockModel(
@@ -101,7 +108,8 @@ class BerlinClockUseCaseTest {
     }
 
     @Test
-    fun `validate multiple emisions`() =runTest{
+    fun `validate multiple emisions`() = runTest {
+        berlinClockUseCase = BerlinClockUseCase(FakeTimeProvider(LocalTime.of(13, 17, 8)))
         val result = berlinClockUseCase().take(2).toList()
         assertEquals(2, result.size)
     }

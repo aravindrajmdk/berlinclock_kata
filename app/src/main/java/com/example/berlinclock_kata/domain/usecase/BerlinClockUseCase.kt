@@ -29,21 +29,21 @@ class BerlinClockUseCase @Inject constructor(private val timeProvider: TimeProvi
         }
     }
 
-    fun getSecondLightColor(seconds: Int): String {
+    private fun getSecondLightColor(seconds: Int): String {
         return if (seconds % 2 == 0) "Y" else "O"
     }
 
-    fun getFiveHourRow(hours: Int): String {
+    private fun getFiveHourRow(hours: Int): String {
         val on = (hours / 5).toInt()
         return "R".repeat(on).padEnd(4, 'O')
     }
 
-    fun getOneHourRow(hours: Int): String {
+    private fun getOneHourRow(hours: Int): String {
         val on = (hours % 5).toInt()
         return "R".repeat(on).padEnd(4, 'O')
     }
 
-    fun getFiveMinRow(minutes: Int): String {
+    private fun getFiveMinRow(minutes: Int): String {
         val colors = CharArray(11) { 'O' }
         repeat(minutes / 5) {
             colors[it] = if ((it + 1) % 3 == 0) 'R' else 'Y'
@@ -51,7 +51,7 @@ class BerlinClockUseCase @Inject constructor(private val timeProvider: TimeProvi
         return String(colors)
     }
 
-    fun getOneMinRow(minutes: Int): String {
+    private fun getOneMinRow(minutes: Int): String {
         val on = (minutes % 5).toInt()
         return "Y".repeat(on).padEnd(4, 'O')
     }
