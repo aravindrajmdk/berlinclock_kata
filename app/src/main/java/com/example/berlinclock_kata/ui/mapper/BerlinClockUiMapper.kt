@@ -4,7 +4,7 @@ import androidx.compose.ui.graphics.Color
 import com.example.berlinclock_kata.domain.models.BerlinClockModel
 import com.example.berlinclock_kata.ui.models.BerlinClockUi
 
-object BerlinClockUiMapper {
+class BerlinClockUiMapper {
     fun map(model: BerlinClockModel): BerlinClockUi {
         return BerlinClockUi(
             second = toColors(model.second).first(),

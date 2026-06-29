@@ -20,11 +20,11 @@ class BerlinClockViewModel @Inject constructor(useCase: BerlinClockUseCase): Vie
 
     @RequiresApi(Build.VERSION_CODES.O)
     val uiState: StateFlow<BerlinClockUi> = useCase().map {
-        BerlinClockUiMapper.map(it)
+        BerlinClockUiMapper().map(it)
     }.stateIn(
         viewModelScope,
         SharingStarted.WhileSubscribed(5000),
-        BerlinClockUiMapper.map(BerlinClockModel(
+        BerlinClockUiMapper().map(BerlinClockModel(
             second = "O",
             fiveHourRow = "OOOO",
             oneHourRow = "OOOO",
