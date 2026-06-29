@@ -31,6 +31,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import com.example.berlinclock_kata.ui.models.BerlinClockUiState
 import com.example.berlinclock_kata.ui.theme.Berlinclock_kataTheme
 import com.example.berlinclock_kata.ui.viewmodels.BerlinClockViewModel
 import dagger.hilt.android.AndroidEntryPoint
@@ -55,6 +56,11 @@ class MainActivity : ComponentActivity() {
 @Composable
 fun BerLinClock(modifier: Modifier = Modifier, viewModel: BerlinClockViewModel = hiltViewModel()) {
     val uiState = viewModel.uiState.collectAsStateWithLifecycle()
+    BerlinClockContent(uiState.value)
+}
+
+@Composable
+fun BerlinClockContent(uiState: BerlinClockUiState){
     Column(
         modifier = Modifier
             .fillMaxWidth()
@@ -63,14 +69,13 @@ fun BerLinClock(modifier: Modifier = Modifier, viewModel: BerlinClockViewModel =
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.spacedBy(12.dp)
     ) {
-        SecondLamp(uiState.value.second)
-        LightRow(uiState.value.fiveHourRow)
-        LightRow(uiState.value.oneHourRow)
-        LightRow(uiState.value.fiveMinRow)
-        LightRow(uiState.value.oneMinRow)
+        SecondLamp(uiState.second)
+        LightRow(uiState.fiveHourRow)
+        LightRow(uiState.oneHourRow)
+        LightRow(uiState.fiveMinRow)
+        LightRow(uiState.oneMinRow)
     }
 }
-
 @Composable
 fun SecondLamp(color: Color) {
     Box(
@@ -102,5 +107,48 @@ fun LightRow(
                     )
             )
         }
+    }
+}
+
+@RequiresApi(Build.VERSION_CODES.O)
+@Preview(showBackground = true)
+@Composable
+fun GreetingPreview() {
+    Berlinclock_kataTheme {
+        val previewState = BerlinClockUiState(
+            second = Color.Yellow,
+            fiveHourRow = listOf(
+                Color.Red,
+                Color.Red,
+                Color.DarkGray,
+                Color.DarkGray
+            ),
+            oneHourRow = listOf(
+                Color.Red,
+                Color.DarkGray,
+                Color.DarkGray,
+                Color.DarkGray
+            ),
+            fiveMinRow = listOf(
+                Color.Yellow,
+                Color.Yellow,
+                Color.Red,
+                Color.DarkGray,
+                Color.DarkGray,
+                Color.DarkGray,
+                Color.DarkGray,
+                Color.DarkGray,
+                Color.DarkGray,
+                Color.DarkGray,
+                Color.DarkGray
+            ),
+            oneMinRow = listOf(
+                Color.Yellow,
+                Color.DarkGray,
+                Color.DarkGray,
+                Color.DarkGray
+            )
+        )
+        BerlinClockContent(previewState)
     }
 }
