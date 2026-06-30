@@ -12,6 +12,13 @@ import javax.inject.Inject
 
 class BerlinClockUseCase @Inject constructor(private val timeProvider: TimeProvider) {
 
+    companion object {
+        private const val FIVE_HOUR_ROWS = 4
+        private const val ONE_HOUR_ROWS = 4
+        private const val FIVE_MIN_ROWS = 11
+        private const val ONE_MIN_ROWS = 4
+    }
+
     @RequiresApi(Build.VERSION_CODES.O)
     operator fun invoke() = flow {
         while (currentCoroutineContext().isActive) {
@@ -35,16 +42,16 @@ class BerlinClockUseCase @Inject constructor(private val timeProvider: TimeProvi
 
     private fun getFiveHourRow(hours: Int): String {
         val on = (hours / 5).toInt()
-        return "R".repeat(on).padEnd(4, 'O')
+        return "R".repeat(on).padEnd(FIVE_HOUR_ROWS, 'O')
     }
 
     private fun getOneHourRow(hours: Int): String {
         val on = (hours % 5).toInt()
-        return "R".repeat(on).padEnd(4, 'O')
+        return "R".repeat(on).padEnd(ONE_HOUR_ROWS, 'O')
     }
 
     private fun getFiveMinRow(minutes: Int): String {
-        val colors = CharArray(11) { 'O' }
+        val colors = CharArray(FIVE_MIN_ROWS) { 'O' }
         repeat(minutes / 5) {
             colors[it] = if ((it + 1) % 3 == 0) 'R' else 'Y'
         }
@@ -53,6 +60,6 @@ class BerlinClockUseCase @Inject constructor(private val timeProvider: TimeProvi
 
     private fun getOneMinRow(minutes: Int): String {
         val on = (minutes % 5).toInt()
-        return "Y".repeat(on).padEnd(4, 'O')
+        return "Y".repeat(on).padEnd(ONE_MIN_ROWS, 'O')
     }
 }
