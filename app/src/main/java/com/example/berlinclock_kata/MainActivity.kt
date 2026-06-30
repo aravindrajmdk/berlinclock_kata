@@ -44,7 +44,7 @@ class MainActivity : ComponentActivity() {
         setContent {
             Berlinclock_kataTheme {
                 Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    BerLinClockScreen(modifier = Modifier.padding(innerPadding))
+                    BerLinClockScreen()
                 }
             }
         }

@@ -29,7 +29,7 @@ import com.example.berlinclock_kata.ui.viewmodels.BerlinClockViewModel
 
 @RequiresApi(Build.VERSION_CODES.O)
 @Composable
-fun BerLinClockScreen(modifier: Modifier = Modifier, viewModel: BerlinClockViewModel = hiltViewModel()) {
+fun BerLinClockScreen(viewModel: BerlinClockViewModel = hiltViewModel()) {
     val uiState = viewModel.uiState.collectAsStateWithLifecycle()
     BerlinClockContent(uiState.value)
 }
