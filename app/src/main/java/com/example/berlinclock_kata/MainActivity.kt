@@ -29,7 +29,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
-import com.example.berlinclock_kata.ui.models.BerlinClockUi
+import com.example.berlinclock_kata.ui.models.BerlinClockUiModel
 import com.example.berlinclock_kata.ui.theme.Berlinclock_kataTheme
 import com.example.berlinclock_kata.ui.viewmodels.BerlinClockViewModel
 import dagger.hilt.android.AndroidEntryPoint
@@ -58,7 +58,7 @@ fun BerLinClock(modifier: Modifier = Modifier, viewModel: BerlinClockViewModel =
 }
 
 @Composable
-fun BerlinClockContent(uiState: BerlinClockUi){
+fun BerlinClockContent(uiState: BerlinClockUiModel){
     Column(
         modifier = Modifier
             .fillMaxWidth()
@@ -113,7 +113,7 @@ fun LightRow(
 @Composable
 fun GreetingPreview() {
     Berlinclock_kataTheme {
-        val previewState = BerlinClockUi(
+        val previewState = BerlinClockUiModel(
             second = Color.Yellow,
             fiveHourRow = listOf(
                 Color.Red,

@@ -2,11 +2,11 @@ package com.example.berlinclock_kata.ui.mapper
 
 import androidx.compose.ui.graphics.Color
 import com.example.berlinclock_kata.domain.models.BerlinClockModel
-import com.example.berlinclock_kata.ui.models.BerlinClockUi
+import com.example.berlinclock_kata.ui.models.BerlinClockUiModel
 
 class BerlinClockUiMapper {
-    fun map(model: BerlinClockModel): BerlinClockUi {
-        return BerlinClockUi(
+    fun map(model: BerlinClockModel): BerlinClockUiModel {
+        return BerlinClockUiModel(
             second = toColors(model.second).first(),
             fiveHourRow = toColors(model.fiveHourRow),
             oneHourRow = toColors(model.oneHourRow),
