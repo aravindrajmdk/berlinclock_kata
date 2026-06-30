@@ -19,7 +19,7 @@ import kotlinx.coroutines.flow.stateIn
 class BerlinClockViewModel @Inject constructor(useCase: BerlinClockUseCase): ViewModel() {
 
     @RequiresApi(Build.VERSION_CODES.O)
-    val uiState: StateFlow<BerlinClockUiModel> = useCase().map {
+   private val _uiState: StateFlow<BerlinClockUiModel> = useCase().map {
         BerlinClockUiMapper().map(it)
     }.stateIn(
         viewModelScope,
@@ -32,4 +32,7 @@ class BerlinClockViewModel @Inject constructor(useCase: BerlinClockUseCase): Vie
             oneMinRow = "OOOO"
         ))
     )
+
+    @RequiresApi(Build.VERSION_CODES.O)
+    val uiState: StateFlow<BerlinClockUiModel> = _uiState
 }
