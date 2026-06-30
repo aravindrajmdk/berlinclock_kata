@@ -7,10 +7,10 @@ import com.example.berlinclock_kata.domain.usecase.BerlinClockUseCase
 import com.example.berlinclock_kata.ui.viewmodels.BerlinClockViewModel
 import io.mockk.every
 import io.mockk.mockk
-import junit.framework.TestCase.assertEquals
 import kotlinx.coroutines.flow.flowOf
 import kotlinx.coroutines.test.runTest
-import org.junit.Test
+import org.junit.jupiter.api.Assertions.assertEquals
+import org.junit.jupiter.api.Test
 
 class BerlinClockViewModelTest {
     lateinit var viewModel: BerlinClockViewModel

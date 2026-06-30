@@ -3,7 +3,7 @@ package com.example.berlinclock_kata
 import androidx.compose.ui.graphics.Color
 import com.example.berlinclock_kata.domain.models.BerlinClockModel
 import com.example.berlinclock_kata.ui.mapper.BerlinClockUiMapper
-import org.junit.Test
+import org.junit.jupiter.api.Test
 
 class BerlinClockUiMapperTest {
     val berlinClockMapper = BerlinClockUiMapper()
