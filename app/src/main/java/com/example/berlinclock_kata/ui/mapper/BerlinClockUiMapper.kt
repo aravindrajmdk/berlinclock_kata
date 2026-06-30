@@ -15,7 +15,7 @@ class BerlinClockUiMapper {
         )
     }
 
-    fun toColors(colour: String): List<Color> {
+   private fun toColors(colour: String): List<Color> {
         return colour.map {
             when (it) {
                 'Y' -> Color.Yellow

@@ -21,25 +21,6 @@ class BerlinClockUiMapperTest {
     }
 
     @Test
-    fun `toColors should return color code`(){
-       val color= berlinClockMapper.toColors("Y")
-        assert(color.first() == Color.Companion.Yellow)
-    }
-
-    @Test
-    fun `toColors should return color RED`(){
-        val color= berlinClockMapper.toColors("R")
-        assert(color.first() == Color.Companion.Red)
-    }
-
-    @Test
-    fun `toColors should return color multiple colors`(){
-        val color= berlinClockMapper.toColors("RY")
-        assert(color.first() == Color.Companion.Red)
-        assert(color.get(1) == Color.Companion.Yellow)
-    }
-
-    @Test
     fun `should map BerlinClockModel to BerlinClockUiState map all fields`(){
         val berlinClockModel = BerlinClockModel(
             second = "Y",
