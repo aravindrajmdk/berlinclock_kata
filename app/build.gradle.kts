@@ -5,12 +5,13 @@ plugins {
     alias(libs.plugins.kotlin.kapt)
     alias(libs.plugins.dagger.hilt)
     alias(libs.plugins.android.junit5)
+    alias(libs.plugins.screenshot)
 }
 
 android {
     namespace = "com.example.berlinclock_kata"
     compileSdk = 36
-
+    experimentalProperties["android.experimental.enableScreenshotTest"] = true
     defaultConfig {
         applicationId = "com.example.berlinclock_kata"
         minSdk = 24
@@ -55,6 +56,9 @@ dependencies {
     implementation(libs.hilt.android)
     kapt(libs.hilt.compiler)
     implementation(libs.androidx.hilt.navigation.compose)
+
+    screenshotTestImplementation(libs.screenshot.validation.api)
+    screenshotTestImplementation(libs.androidx.ui.tooling)
 
     testImplementation(libs.junit.jupiter.api)
     testRuntimeOnly(libs.junit.jupiter.engine)
