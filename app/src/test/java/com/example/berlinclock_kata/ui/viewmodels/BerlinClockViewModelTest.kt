@@ -1,15 +1,14 @@
-package com.example.berlinclock_kata
+package com.example.berlinclock_kata.ui.viewmodels
 
 import androidx.compose.ui.graphics.Color
 import app.cash.turbine.test
 import com.example.berlinclock_kata.domain.models.BerlinClockModel
 import com.example.berlinclock_kata.domain.usecase.BerlinClockUseCase
-import com.example.berlinclock_kata.ui.viewmodels.BerlinClockViewModel
 import io.mockk.every
 import io.mockk.mockk
 import kotlinx.coroutines.flow.flowOf
 import kotlinx.coroutines.test.runTest
-import org.junit.jupiter.api.Assertions.assertEquals
+import org.junit.jupiter.api.Assertions
 import org.junit.jupiter.api.Test
 
 class BerlinClockViewModelTest {
@@ -33,7 +32,7 @@ class BerlinClockViewModelTest {
             awaitItem()
             val state = awaitItem()
 
-            assertEquals(Color.Yellow, state.second)
+            Assertions.assertEquals(Color.Companion.Yellow, state.second)
 
             cancelAndIgnoreRemainingEvents()
         }

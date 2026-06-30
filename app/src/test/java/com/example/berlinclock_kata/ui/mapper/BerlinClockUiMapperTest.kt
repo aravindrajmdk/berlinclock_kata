@@ -1,8 +1,7 @@
-package com.example.berlinclock_kata
+package com.example.berlinclock_kata.ui.mapper
 
 import androidx.compose.ui.graphics.Color
 import com.example.berlinclock_kata.domain.models.BerlinClockModel
-import com.example.berlinclock_kata.ui.mapper.BerlinClockUiMapper
 import org.junit.jupiter.api.Test
 
 class BerlinClockUiMapperTest {
@@ -18,26 +17,26 @@ class BerlinClockUiMapperTest {
             oneMinRow = "YYOO"
         )
         val result =berlinClockMapper.map(berlinClockModel)
-        assert(result.second == Color.Yellow)
+        assert(result.second == Color.Companion.Yellow)
     }
 
     @Test
     fun `toColors should return color code`(){
        val color= berlinClockMapper.toColors("Y")
-        assert(color.first() == Color.Yellow)
+        assert(color.first() == Color.Companion.Yellow)
     }
 
     @Test
     fun `toColors should return color RED`(){
         val color= berlinClockMapper.toColors("R")
-        assert(color.first() == Color.Red)
+        assert(color.first() == Color.Companion.Red)
     }
 
     @Test
     fun `toColors should return color multiple colors`(){
         val color= berlinClockMapper.toColors("RY")
-        assert(color.first() == Color.Red)
-        assert(color.get(1) == Color.Yellow)
+        assert(color.first() == Color.Companion.Red)
+        assert(color.get(1) == Color.Companion.Yellow)
     }
 
     @Test
@@ -50,7 +49,11 @@ class BerlinClockUiMapperTest {
             oneMinRow = "YYOO"
         )
         val berlinClockUiState = berlinClockMapper.map(berlinClockModel)
-        assert(berlinClockUiState.second == Color.Yellow)
-        assert(berlinClockUiState.fiveHourRow == listOf(Color.Red,Color.Red,Color.DarkGray,Color.DarkGray))
+        assert(berlinClockUiState.second == Color.Companion.Yellow)
+        assert(berlinClockUiState.fiveHourRow == listOf(
+            Color.Companion.Red,
+            Color.Companion.Red,
+            Color.Companion.DarkGray,
+            Color.Companion.DarkGray))
     }
 }

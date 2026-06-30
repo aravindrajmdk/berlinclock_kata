@@ -1,6 +1,5 @@
-package com.example.berlinclock_kata
+package com.example.berlinclock_kata.core
 
-import com.example.berlinclock_kata.core.TimeProvider
 import java.time.LocalTime
 
 class FakeTimeProvider(
